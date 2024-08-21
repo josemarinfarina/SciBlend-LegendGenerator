@@ -2,6 +2,9 @@
 
 This script is an add-on for Blender 4.2 that allows users to create customized legends and overlay them onto their renders in real-time using Blender's compositor. Thanks to the powerful real-time compositor introduced in Blender 4.2, this add-on is particularly useful for scientific visualization, where precise and customizable legends are essential.
 
+
+![Legend Generator Example](media/1.png)
+
 ## Requirements
 
 Before installing Blender and the add-on, ensure that you meet the following requirements:
@@ -92,6 +95,43 @@ To ensure the add-on functions correctly, you need to install `matplotlib` in Bl
 3. **Using the Add-on**:
     - Access the add-on from the `View3D` panel under the `Legend Generator` tab.
     - Configure your legend and add it to your composition.
+
+
+## Usage
+
+Once the add-on is installed and enabled, you can use it to generate and customize legends in Blender. Here’s a step-by-step guide on how to use the add-on:
+
+### 1. Accessing the Legend Generator Panel
+
+- Open Blender and switch to the `3D Viewport`.
+- In the right sidebar, you will see a new tab called `Legend Generator`.
+- Click on this tab to access the add-on's UI panel.
+
+### 2. Configuring Your Legend
+
+- **Number of Nodes**: Specify the number of color nodes for your gradient. This controls the complexity of the gradient used in the legend.
+- **Legend Name**: Enter the name of the legend. This will appear as the label on the legend bar.
+- **Interpolation Method**: Choose how the colors between nodes are interpolated. Options include:
+  - **Linear**: Smooth transition between colors.
+  - **Stair Step**: Abrupt changes between colors, useful for categorical data.
+  - **Cubic**: Smooth cubic interpolation.
+  - **Nearest**: Colors are assigned to the nearest node without interpolation.
+
+### 3. Adding and Configuring Color Nodes
+
+- In the `Legend Generator` panel, you will see a list of color nodes.
+- For each node, you can set a color and an associated value (label).
+- You can rearrange the nodes using the `Up` and `Down` buttons to adjust the order in the legend.
+
+### 4. Generating the Legend
+
+- Once configured, click the `Generate Legend and Add Overlay` button.
+- The legend will be generated as an image and automatically added to your compositor in Blender.
+
+### 5. Integrating the Legend into Your Render
+
+- The generated legend will appear as a new image node in the compositor.
+- You can position, scale, and composite the legend with your render using Blender's compositor tools.
 
 ## Contributing
 
