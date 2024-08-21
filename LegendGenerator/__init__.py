@@ -1,17 +1,25 @@
-import matplotlib.colors as mcolors
-import matplotlib.pyplot as plt
-import numpy as np
-import tempfile
-import os
-import sys
-from bpy.types import Operator, Panel, PropertyGroup, UIList
 from bpy.props import IntProperty, FloatVectorProperty, CollectionProperty, StringProperty, EnumProperty
+from bpy.types import Operator, Panel, PropertyGroup, UIList
+import sys
+import os
+import tempfile
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 import bpy
 
 bl_info = {
     "name": "Legend Generator",
-    "blender": (2, 80, 0),
+    "blender": (4, 2, 0),
     "category": "Compositing",
+    "version": (1, 0, 0),
+    "author": "José Marín",
+    "description": "Customizable Legends for Scientific Visualization in Blender",
+    "location": "View3D > UI > Legend Generator",
+    "warning": "",
+    "wiki_url": "",
+    "tracker_url": "",
+    "support": "COMMUNITY",
 }
 
 
