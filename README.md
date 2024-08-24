@@ -2,8 +2,25 @@
 
 This script is an add-on for Blender 4.2 that allows users to create customized legends and overlay them onto their renders in real-time using Blender's compositor. Thanks to the powerful real-time compositor introduced in Blender 4.2, this add-on is particularly useful for scientific visualization, where precise and customizable legends are essential.
 
-
 ![Legend Generator Example](media/1.png)
+
+## Table of Contents
+
+1. [Requirements](#requirements)
+2. [Features](#features)
+3. [Installation](#installation)
+   - [Important Note: Blender Installation](#important-note-blender-installation)
+   - [Install Blender 4.2](#1-install-blender-42)
+   - [Install `matplotlib`](#2-install-matplotlib)
+   - [Install the Add-on](#3-install-the-add-on)
+4. [Usage](#usage)
+   - [Accessing the Legend Generator Panel](#1-accessing-the-legend-generator-panel)
+   - [Configuring Your Legend](#2-configuring-your-legend)
+   - [Adding and Configuring Color Nodes](#3-adding-and-configuring-color-nodes)
+   - [Generating the Legend](#4-generating-the-legend)
+   - [Integrating the Legend into Your Render](#5-integrating-the-legend-into-your-render)
+5. [Contributing](#contributing)
+
 
 ## Requirements
 
@@ -30,7 +47,15 @@ Before installing Blender and the add-on, ensure that you meet the following req
 - **Real-Time Compositing**: Integrate the legends directly into your renders using Blender's compositor.
 - **Easy to Use**: Configure and apply legends directly within the Blender interface.
 
+
+
 ## Installation
+
+### Important Note: Blender Installation
+
+**IMPORTANT**: When installing Blender, it is crucial to avoid using the Snap package version. The Snap version of Blender creates an isolated environment that prevents the installation of additional Python packages like `matplotlib`, which is essential for this add-on to function correctly.
+
+Instead, please follow the manual installation instructions provided below to ensure that you can properly install and use all required dependencies.
 
 ### 1. Install Blender 4.2
 
