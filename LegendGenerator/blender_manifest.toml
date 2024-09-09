@@ -1,18 +1,12 @@
 schema_version = "1.0.0"
 id = "LegendGenerator"
-version = "1.0.0"
+version = "2.0.0"
 name = "Legend Generator"
 author = "José Marín"
 tagline = "Customizable Legends for Scientific Visualization in Blender"
 description = """
-v.1.0.0
+v.2.0.0
 
-This add-on extends Blender's functionality by enabling the creation and management of customizable legends directly within the compositor. Key features include:
-Generate gradient-based legends with multiple interpolation methods
-Overlay legends onto renders in real-time using Blender's compositor
-Customize legend appearance, including colors and labels
-Easily integrate legends into scientific visualizations
-Streamlined UI for intuitive legend configuration and application
 """
 blender_version_min = "4.2.0"
 license = ["free licensing"]
