@@ -2,7 +2,7 @@
 
 This script is an add-on for Blender 4.2 that allows users to create customized legends and overlay them onto their renders in real-time using Blender's compositor. Thanks to the powerful real-time compositor introduced in Blender 4.2, this add-on is particularly useful for scientific visualization, where precise and customizable legends are essential.
 
-![Legend Generator Example](media/1.png)
+![Legend Generator Example](media/image.png)
 
 ## Table of Contents
 
