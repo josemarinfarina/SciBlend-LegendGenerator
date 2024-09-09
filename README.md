@@ -1,4 +1,4 @@
-# SciBlend: Legend Generator for Blender
+# SciBlend: Legend Generator for Blender v.2.0.0
 
 This script is an add-on for Blender 4.2 that allows users to create customized legends and overlay them onto their renders in real-time using Blender's compositor. Thanks to the powerful real-time compositor introduced in Blender 4.2, this add-on is particularly useful for scientific visualization, where precise and customizable legends are essential.
 
@@ -20,7 +20,6 @@ This script is an add-on for Blender 4.2 that allows users to create customized 
    - [Generating the Legend](#4-generating-the-legend)
    - [Integrating the Legend into Your Render](#5-integrating-the-legend-into-your-render)
 5. [Contributing](#contributing)
-
 
 ## Requirements
 
@@ -46,8 +45,11 @@ Before installing Blender and the add-on, ensure that you meet the following req
 - **Customizable Legends**: Generate gradient-based legends with various interpolation methods.
 - **Real-Time Compositing**: Integrate the legends directly into your renders using Blender's compositor.
 - **Easy to Use**: Configure and apply legends directly within the Blender interface.
-
-
+- **Scientific Colormaps**: Choose from a variety of built-in scientific colormaps or use custom colors.
+- **Flexible Positioning**: Easily adjust the position and scale of the legend in your render.
+- **Font Customization**: Use system fonts or custom font files for legend text.
+- **Text Color Control**: Adjust the color of the legend text to match your render style.
+- **Orientation Options**: Create both horizontal and vertical legends.
 
 ## Installation
 
@@ -92,7 +94,7 @@ To use this add-on, you need to have Blender 4.2 installed. Follow these steps t
 To ensure the add-on functions correctly, you need to install `matplotlib` in Blender's Python environment:
 
 1. **Ensure `pip` is Available**:
-    - Run the following command to ensure `pip` is installed in Blender’s Python environment:
+    - Run the following command to ensure `pip` is installed in Blender's Python environment:
       ```bash
       /opt/blender/blender-4.2-linux-x64/4.2/python/bin/python3.11 -m ensurepip
       ```
@@ -121,10 +123,9 @@ To ensure the add-on functions correctly, you need to install `matplotlib` in Bl
     - Access the add-on from the `View3D` panel under the `Legend Generator` tab.
     - Configure your legend and add it to your composition.
 
-
 ## Usage
 
-Once the add-on is installed and enabled, you can use it to generate and customize legends in Blender. Here’s a step-by-step guide on how to use the add-on:
+Once the add-on is installed and enabled, you can use it to generate and customize legends in Blender. Here's a step-by-step guide on how to use the add-on:
 
 ### 1. Accessing the Legend Generator Panel
 
@@ -141,22 +142,35 @@ Once the add-on is installed and enabled, you can use it to generate and customi
   - **Stair Step**: Abrupt changes between colors, useful for categorical data.
   - **Cubic**: Smooth cubic interpolation.
   - **Nearest**: Colors are assigned to the nearest node without interpolation.
+- **Orientation**: Choose between horizontal and vertical legend orientation.
+- **Colormap**: Select from built-in scientific colormaps or use custom colors.
+- **Colormap Range**: Set the start and end values for the colormap and adjust the number of subdivisions.
 
 ### 3. Adding and Configuring Color Nodes
 
 - In the `Legend Generator` panel, you will see a list of color nodes.
 - For each node, you can set a color and an associated value (label).
 - You can rearrange the nodes using the `Up` and `Down` buttons to adjust the order in the legend.
+- When using a scientific colormap, the color nodes will be automatically generated based on your settings.
 
-### 4. Generating the Legend
+### 4. Customizing Legend Appearance
 
-- Once configured, click the `Generate Legend and Add Overlay` button.
+- **Legend Dimension**: Set the width and height of the legend in pixels.
+- **Scale**: Adjust the scale of the legend relative to the scene or render size. You can link or unlink X and Y scaling.
+- **Position**: Set the X and Y position of the legend in your render.
+- **Font**: Choose between system fonts or a custom font file for the legend text.
+- **Text Color**: Set the color of the legend text to match your render style.
+
+### 5. Generating the Legend
+
+- Once configured, click the `Generate Legend` button.
 - The legend will be generated as an image and automatically added to your compositor in Blender.
 
-### 5. Integrating the Legend into Your Render
+### 6. Integrating the Legend into Your Render
 
 - The generated legend will appear as a new image node in the compositor.
-- You can position, scale, and composite the legend with your render using Blender's compositor tools.
+- The add-on automatically sets up the necessary nodes to overlay the legend on your render.
+- You can further adjust the position and scale of the legend using the controls in the Legend Generator panel.
 
 ## Contributing
 
