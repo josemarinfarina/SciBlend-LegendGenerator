@@ -34,8 +34,8 @@ class PNGOverlayOperator(Operator):
         else:
             colormaps = load_colormaps()
             selected_colormap = colormaps.get(scene.colormap, [])
-            print(f"Colormap seleccionado: {scene.colormap}")
-            print(f"Datos del colormap: {selected_colormap[:5]}")
+            print(f"Selected colormap: {scene.colormap}")
+            print(f"Colormap data: {selected_colormap[:5]}")
             
             start = scene.colormap_start
             end = scene.colormap_end
@@ -51,7 +51,7 @@ class PNGOverlayOperator(Operator):
                 color_nodes.append((pos, color))
                 labels.append(f"{value:.2f}")
             
-            print(f"Color nodes generados: {color_nodes[:5]}")
+            print(f"Generated color nodes: {color_nodes[:5]}")
 
         if not color_nodes:
             self.report({'ERROR'}, "No color nodes available")
@@ -63,7 +63,7 @@ class PNGOverlayOperator(Operator):
                 font_type = scene.legend_font_type
                 font_path = scene.legend_system_font if font_type == 'SYSTEM' else scene.legend_font
                 
-                print(f"Intentando crear la leyenda con la fuente: {font_path} (Tipo: {font_type})")
+                print(f"Attempting to create legend with font: {font_path} (Type: {font_type})")
                 create_gradient_bar(scene.legend_width, scene.legend_height, color_nodes,
                                     labels, tmpname, scene.legend_name, 
                                     scene.interpolation, scene.legend_orientation,
@@ -78,7 +78,8 @@ class PNGOverlayOperator(Operator):
             composite = tree.nodes.new('CompositorNodeComposite')
             alpha_over = tree.nodes.new('CompositorNodeAlphaOver')
             image_node = tree.nodes.new('CompositorNodeImage')
-            scale_node = tree.nodes.new('CompositorNodeScale')
+            scale_size_node = tree.nodes.new('CompositorNodeScale')
+            scale_legend_node = tree.nodes.new('CompositorNodeScale')
             translate_node = tree.nodes.new('CompositorNodeTranslate')
 
             try:
@@ -87,20 +88,26 @@ class PNGOverlayOperator(Operator):
                 self.report({'ERROR'}, "Cannot load image")
                 return {'CANCELLED'}
 
-            scale_node.space = 'RELATIVE'
-            scale_node.inputs['X'].default_value = scene.legend_scale_x
-            scale_node.inputs['Y'].default_value = scene.legend_scale_y
+            scale_size_node.space = 'RENDER_SIZE' if scene.legend_scale_mode == 'RENDER' else 'SCENE_SIZE'
+            scale_size_node.inputs[1].default_value = 1.0
+            scale_size_node.inputs[2].default_value = 1.0
+
+            scale_legend_node.space = 'RELATIVE'
+            scale_legend_node.inputs[1].default_value = scene.legend_scale_x
+            scale_legend_node.inputs[2].default_value = scene.legend_scale_y
 
             render_layers.location = (0, 0)
             image_node.location = (0, 200)
-            scale_node.location = (200, 200)
-            translate_node.location = (400, 200)
-            alpha_over.location = (600, 0)
-            composite.location = (800, 0)
+            scale_size_node.location = (200, 200)
+            scale_legend_node.location = (400, 200)
+            translate_node.location = (600, 200)
+            alpha_over.location = (800, 0)
+            composite.location = (1000, 0)
 
             tree.links.new(render_layers.outputs["Image"], alpha_over.inputs[1])
-            tree.links.new(image_node.outputs["Image"], scale_node.inputs["Image"])
-            tree.links.new(scale_node.outputs["Image"], translate_node.inputs["Image"])
+            tree.links.new(image_node.outputs["Image"], scale_size_node.inputs["Image"])
+            tree.links.new(scale_size_node.outputs["Image"], scale_legend_node.inputs["Image"])
+            tree.links.new(scale_legend_node.outputs["Image"], translate_node.inputs["Image"])
             tree.links.new(translate_node.outputs["Image"], alpha_over.inputs[2])
             tree.links.new(alpha_over.outputs["Image"], composite.inputs["Image"])
 
@@ -109,7 +116,7 @@ class PNGOverlayOperator(Operator):
 
             return {'FINISHED'}
         except Exception as e:
-            self.report({'ERROR'}, f"Error al generar la leyenda: {str(e)}")
+            self.report({'ERROR'}, f"Error generating the legend: {str(e)}")
             return {'CANCELLED'}
 
 from ..utils.color_utils import interpolate_color

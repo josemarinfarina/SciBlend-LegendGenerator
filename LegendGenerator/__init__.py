@@ -56,7 +56,6 @@ def update_legend_scale(self, context):
         elif self == scene.legend_scale_y and current_y != current_x:
             scene.legend_scale_x = current_y
     
-    from .utils.compositor_utils import update_legend_scale_in_compositor
     update_legend_scale_in_compositor(context)
     
     for area in context.screen.areas:
@@ -66,6 +65,10 @@ def update_legend_scale(self, context):
 def update_legend_scale_mode(self, context):
     from .utils.compositor_utils import update_legend_scale_in_compositor
     update_legend_scale_in_compositor(context)
+    
+    # Forzar una actualización de la vista
+    for area in context.screen.areas:
+        area.tag_redraw()
 
 def update_legend(self, context):
     from .utils.compositor_utils import update_legend_scale_in_compositor
@@ -122,38 +125,52 @@ def register():
         ],
         default='HORIZONTAL'
     )
-    bpy.types.Scene.legend_position_x = FloatProperty(name="X Position", default=0.0, update=update_legend_position)
-    bpy.types.Scene.legend_position_y = FloatProperty(name="Y Position", default=0.0, update=update_legend_position)
+    bpy.types.Scene.legend_position_x = FloatProperty(
+        name="X Position",
+        default=0.0,
+        update=update_legend_position
+    )
+    bpy.types.Scene.legend_position_y = FloatProperty(
+        name="Y Position",
+        default=0.0,
+        update=update_legend_position
+    )
     bpy.types.Scene.legend_scale_uniform = BoolProperty(
         name="Uniform Scale",
         default=True,
         update=update_legend_scale
     )
     bpy.types.Scene.legend_scale_x = FloatProperty(
-        name="Scale X",
+        name="X Scale",
+        description="Scale of the legend in X direction",
         default=1.0,
-        min=0.001,
+        min=0.1,
+        max=10.0,
         update=update_legend_scale
     )
     bpy.types.Scene.legend_scale_y = FloatProperty(
-        name="Scale Y",
+        name="Y Scale",
+        description="Scale of the legend in Y direction",
         default=1.0,
-        min=0.001,
+        min=0.1,
+        max=10.0,
         update=update_legend_scale
     )
     bpy.types.Scene.legend_scale_linked = BoolProperty(
         name="Link Scale",
         description="Link X and Y scale values",
-        default=True
+        default=True,
+        update=update_legend_scale
     )
     
     bpy.types.Scene.legend_scale_mode = EnumProperty(
         name="Scale Mode",
         items=[
-            ('SCENE', "Scene Size", "Scale relative to scene size"),
-            ('RENDER', "Render Size", "Scale relative to render size")
+            ('SCENE_SIZE', "Scene Size", "Scale relative to scene size"),
+            ('RENDER_SIZE_FIT', "Render Size (Fit)", "Scale relative to render size, fit to render"),
+            ('RENDER_SIZE_CROP', "Render Size (Crop)", "Scale relative to render size, crop to render")
         ],
-        default='SCENE',
+        default='SCENE_SIZE',
         update=update_legend_scale_mode
     )
     
