@@ -1,4 +1,4 @@
-# SciBlend: Legend Generator for Blender v.2.0.0
+# SciBlend: Legend Generator for Blender v.2.0.1
 
 This script is an add-on for Blender 4.2 that allows users to create customized legends and overlay them onto their renders in real-time using Blender's compositor. Thanks to the powerful real-time compositor introduced in Blender 4.2, this add-on is particularly useful for scientific visualization, where precise and customizable legends are essential.
 

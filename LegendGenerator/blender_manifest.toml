@@ -1,11 +1,11 @@
 schema_version = "1.0.0"
 id = "LegendGenerator"
-version = "2.0.0"
+version = "2.0.1"
 name = "Legend Generator"
 author = "José Marín"
 tagline = "Customizable Legends for Scientific Visualization in Blender"
 description = """
-v.2.0.0
+v.2.0.1
 
 """
 blender_version_min = "4.2.0"
