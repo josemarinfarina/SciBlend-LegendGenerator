@@ -59,13 +59,21 @@ Before installing Blender and the add-on, ensure that you meet the following req
 
 Instead, please follow the manual installation instructions provided below to ensure that you can properly install and use all required dependencies.
 
-### 1. Install Blender 4.2
 
-To use this add-on, you need to have Blender 4.2 installed. Follow these steps to install Blender:
 
-1. **Download Blender 4.2**:
+---
+
+### 1. Install Blender 4.2.1
+
+Follow these steps to install Blender 4.2+ based on your operating system:
+
+**Disclaimer**: The following commands are specifically for Blender 4.2.1. If you are using a different version of Blender, simply replace 4.2.1 with the version you are using (e.g., 4.2.0, 4.3.0, etc.).
+
+#### For Linux:
+
+1. **Download Blender 4.2.1**:
     - Go to the official Blender website: [Blender Download](https://www.blender.org/download/).
-    - Download the Blender 4.2 version for Linux (as a `.tar.xz` file).
+    - Download the Blender 4.2.1 version for Linux (as a `.tar.xz` file).
 
 2. **Extract Blender**:
     - Open a terminal and navigate to your Downloads directory:
@@ -75,7 +83,7 @@ To use this add-on, you need to have Blender 4.2 installed. Follow these steps t
     - Create a directory for Blender and extract the downloaded file:
       ```bash
       sudo mkdir -p /opt/blender
-      sudo tar -xvf blender-4.2-linux-x64.tar.xz -C /opt/blender/
+      sudo tar -xvf blender-4.2.1-linux-x64.tar.xz -C /opt/blender/
       ```
     - Change the ownership of the Blender directory:
       ```bash
@@ -83,31 +91,69 @@ To use this add-on, you need to have Blender 4.2 installed. Follow these steps t
       ```
 
 3. **Create a Symlink for Easy Access**:
-    - Create a symbolic link to easily run Blender from the terminal:
+    - Create a symbolic link to run Blender easily from the terminal:
       ```bash
-      sudo ln -s /opt/blender/blender-4.2-linux-x64/blender /usr/local/bin/blender
+      sudo ln -s /opt/blender/blender-4.2.1-linux-x64/blender /usr/local/bin/blender
       ```
-    - Now you can run Blender simply by typing `blender` in your terminal.
+    - Now you can run Blender by typing `blender` in your terminal.
+
+#### For macOS:
+
+1. **Download Blender 4.2.1**:
+    - Go to the official Blender website: [Blender Download](https://www.blender.org/download/).
+    - Download the Blender 4.2.1 version for macOS.
+
+2. **Install Blender**:
+    - Open the `.dmg` file and drag Blender to your `Applications` folder.
+
+3. **Run Blender**:
+    - You can launch Blender directly from the `Applications` folder or by typing `open /Applications/Blender.app` in the terminal.
+
+#### For Windows:
+
+1. **Download Blender 4.2.1**:
+    - Go to the official Blender website: [Blender Download](https://www.blender.org/download/).
+    - Download the Blender 4.2.1 installer for Windows.
+
+2. **Install Blender**:
+    - Run the `.exe` installer and follow the installation prompts.
+
+3. **Add Blender to PATH** (Optional):
+    - If you want to run Blender from the command line, make sure to check the option to add Blender to your system's PATH during installation. Alternatively, you can manually add the Blender installation directory to the PATH environment variable.
+
+4. **Run Blender**:
+    - You can launch Blender from the Start menu or by typing `blender` in the command prompt (if added to PATH).
+
+
+
+
 
 ### 2. Install `matplotlib`
 
-To ensure the add-on functions correctly, you need to install `matplotlib` in Blender's Python environment:
+
+To ensure the add-on functions correctly, you need to install `matplotlib` in Blender's Python environment. The steps are the same across Linux, macOS, and Windows:
 
 1. **Ensure `pip` is Available**:
-    - Run the following command to ensure `pip` is installed in Blender's Python environment:
+    - Run the following command to ensure `pip` is installed in Blender's Python environment (replace the path with your Blender 4.2.1 installation path):
+
       ```bash
-      /opt/blender/blender-4.2-linux-x64/4.2/python/bin/python3.11 -m ensurepip
+      <path_to_blender>/4.2.1/python/bin/python3.11 -m ensurepip
       ```
 
 2. **Install `matplotlib`**:
-    - Install `matplotlib` using `pip` within Blender's Python environment:
+    - Install `matplotlib` using `pip` within Blender’s Python environment. Be sure to target Blender's Python `site-packages` folder:
+
       ```bash
-      /opt/blender/blender-4.2-linux-x64/4.2/python/bin/python3.11 -m pip install --target=/opt/blender/blender-4.2.1-linux-x64/4.2/python/lib/python3.11/site-packages matplotlib
+      <path_to_blender>/4.2.1/python/bin/python3.11 -m pip install --target=<path_to_blender>/4.2.1/python/lib/python3.11/site-packages matplotlib
       ```
-    - If you encounter warnings about existing directories or package conflicts, you can use the `--upgrade` option to ensure all packages are correctly installed:
+
+3. **Upgrade if Necessary**:
+    - If you encounter package conflicts or warnings, use the `--upgrade` flag:
+
       ```bash
-      /opt/blender/blender-4.2-linux-x64/4.2/python/bin/python3.11 -m pip install --target=/opt/blender/blender-4.2.1-linux-x64/4.2/python/lib/python3.11/site-packages --upgrade matplotlib
+      <path_to_blender>/4.2.1/python/bin/python3.11 -m pip install --target=<path_to_blender>/4.2.1/python/lib/python3.11/site-packages --upgrade matplotlib
       ```
+
 
 ### 3. Install the Add-on
 
